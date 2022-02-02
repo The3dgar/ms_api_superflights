@@ -1,0 +1,51 @@
+version: "3.7"
+
+services:
+  app:
+    image: app_vuelos:v2
+    container_name: app_vuelos
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - 80:3000
+    restart: always
+    networks:
+      - ms_nestjs
+
+  flight-ms:
+    image: flight-ms:v2
+    container_name: flight-ms
+    build:
+      context: ./flight-ms
+      dockerfile: Dockerfile
+    env_file: .env
+    restart: always
+    networks:
+      - ms_nestjs
+
+  passenger-ms:
+    image: passenger-ms:v2
+    container_name: passenger-ms
+    build:
+      context: ./passenger-ms
+      dockerfile: Dockerfile
+    env_file: .env
+    restart: always
+    networks:
+      - ms_nestjs
+
+  user-ms:
+    image: user-ms:v2
+    container_name: user-ms
+    build:
+      context: ./user-ms
+      dockerfile: Dockerfile
+    env_file: .env
+    restart: always
+    networks:
+      - ms_nestjs
+
+networks:
+  ms_nestjs:

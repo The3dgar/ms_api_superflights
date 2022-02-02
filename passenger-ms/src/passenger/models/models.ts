@@ -1,0 +1,1 @@
+export const PassengerModel = { name: 'passengers' };
